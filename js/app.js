@@ -13,6 +13,10 @@ module.config([
         templateUrl: 'templates/classes/new.html',
         controller: 'NewClassController'
       }).
+      when('/classes/:className', {
+        templateUrl: 'templates/classes/show.html',
+        controller: 'ShowClassController'
+      }).
       otherwise({
         redirectTo: '/teams'
       })

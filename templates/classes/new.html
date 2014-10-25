@@ -1,27 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-        <div class="col-sm-6">
-          <h1>{{class.name}}</h1>
-          <div ng-repeat="member in class.members">
-            <strong>{{member.name}}</strong> {{member.email}}
-            <a ng-click="removeMember(member)" ng-show="member.name && member.email"><i class="fa fa-close"></i></a>
-          </div>
-          <a class="btn btn-primary" ng-click="create()" ng-disabled="!class.members.length">Create</a>
-        </div>
-        <div class="col-sm-6">
-          <input ng-model="class.name" placeholder="Name your class" />
-          <div ng-repeat="member in class.members">
-            <input type="text" ng-model="member.name" placeholder="Name"/>
-            <input type="text" ng-model="member.email" placeholder="Email"/>
-          </div>
-          <div>
-            <a ng-click="newMember()">
-              <i class="fa fa-plus"></i> Add Member
-            </a>
-          </div>
-        </div>
+    <div class="col-sm-6">
+      <h1>{{class.name}}</h1>
+      <div ng-repeat="member in class.members">
+        <strong>{{member.name}}</strong> {{member.email}}
+        <a ng-click="removeMember(member)" ng-show="member.name && member.email"><i class="fa fa-close"></i></a>
+      </div>
+      <a class="btn btn-primary" ng-click="create()" ng-disabled="!class.members.length">Create</a>
+    </div>
+    <div class="col-sm-6">
+      <input ng-model="class.name" placeholder="Name your class" />
+      <div ng-repeat="member in class.members">
+        <input type="text" ng-model="member.name" placeholder="Name"/>
+        <input type="text" ng-model="member.email" placeholder="Email"/>
+      </div>
+      <div>
+        <a ng-click="newMember()">
+          <i class="fa fa-plus"></i> Add Member
+        </a>
       </div>
     </div>
   </div>

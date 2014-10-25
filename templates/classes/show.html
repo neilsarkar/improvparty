@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>{{class.name}}</h1>
+
+      <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
+      <div ng-hide="currentUser">
+        Who are you?
+        <div ng-repeat="member in class.members">
+          <a ng-click="setSelf(member)">{{member.name || member.$id}}</a>
+        </div>
+      </div>
+
+      <div ng-show="currentUser">
+        Who do you want to play with?
+        <div ng-repeat="member in class.members">
+          <label>
+            <input ng-model="member.chosen" type="checkbox" />
+            {{member.name || member.$id}}
+          </label>
+        </div>
+        <a ng-click="save()">Save</a>
+      </div>
+    </div>
+  </div>
+</div>

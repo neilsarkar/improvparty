@@ -13,8 +13,7 @@
     "postinstall": "bower install",
 
     "prestart": "npm install",
-    "start": "http-server -a 0.0.0.0 -p 3000",
-    "test": "test"
+    "start": "http-server -a 0.0.0.0 -p 3000"
   },
   "repository": {
     "type": "git",
