@@ -1,4 +1,4 @@
-var module = angular.module('improvparty', ['ngRoute'])
+var module = angular.module('improvparty', ['ngRoute', 'classes'])
 
 module.config([
   '$routeProvider', '$locationProvider',
@@ -8,6 +8,10 @@ module.config([
     $routeProvider.
       when('/teams', {
         templateUrl: 'templates/teams.html'
+      }).
+      when('/classes/new', {
+        templateUrl: 'templates/classes/new.html',
+        controller: 'NewClassController'
       }).
       otherwise({
         redirectTo: '/teams'
