@@ -1,0 +1,29 @@
+{
+  "name": "improvparty",
+  "version": "0.0.0",
+  "description": "Improv Party",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "~0.7.2"
+  },
+  "devDependencies": {
+    "http-server": "^0.7.2"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -p 3000",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neilsarkar/improvparty.git"
+  },
+  "author": "Neil Sarkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neilsarkar/improvparty/issues"
+  },
+  "homepage": "https://github.com/neilsarkar/improvparty"
+}
