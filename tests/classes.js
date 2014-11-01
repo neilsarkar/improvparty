@@ -2,7 +2,6 @@ exports.test = function() {
   describe('creating a new class', function() {
     it('works with seed data', function() {
       browser.get('/')
-      element(by.model('class.name')).sendKeys('Suzi Barrett Genre Study')
 
       var users = [
         { name: "Stephanie Streisand", email: "stephaniestreisand@gmail.com"},
@@ -23,11 +22,12 @@ exports.test = function() {
         { name: "Marina Mastros", email: "marina.mastros@gmail.com"}
       ]
 
-      element.all(by.repeater('member in class.members')).then(function(rows) {
-        rows.forEach(function(row, i) {
-          row.element(by.model('member.name')).sendKeys(users[i].name)
-          row.element(by.model('member.email')).sendKeys(users[i].email)
-        })
+      element(by.model('class.name')).sendKeys('Suzi Barrett Genre Study')
+
+      users.forEach(function(user) {
+        element(by.model('newMemberName')).sendKeys(user.name)
+        element(by.model('newMemberEmail')).sendKeys(user.email)
+        element(by.partialLinkText('Add Member')).click()
       })
 
       element(by.partialLinkText('Create')).click()

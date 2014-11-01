@@ -7,6 +7,15 @@ angular.module('classes').controller('NewClassController', [
       members: []
     }
 
+    $scope.addMember = function() {
+      $scope.class.members.push({
+        name: $scope.newMemberName,
+        email: $scope.newMemberEmail
+      })
+      $scope.newMemberName = null
+      $scope.newMemberEmail = null
+    }
+
     $scope.newMember = function() {
       $scope.class.members.push({})
     }
