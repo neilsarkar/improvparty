@@ -6,12 +6,13 @@ angular.module('classes').service('classService', [
 
     this.addMember = function(className, user) {
       if( !user.name || !user.email) {
-        throw "You must provide a username or email"
+        return console.error("You must provide a username and an email", user)
       }
 
       return $firebase(table.child(className)).$set(user.name, {
         name: user.name,
-        email: user.email
+        email: user.email,
+        slug: slug(user.name)
       })
     }
 
@@ -29,6 +30,10 @@ angular.module('classes').service('classService', [
     }
     this.removeChoice = function(className, username, member) {
       return $firebase(ref.child('choices').child(className).child(username)).$remove(name)
+    }
+
+    function slug(name) {
+      return name.replace(/[^A-z]/g, '-').toLowerCase()
     }
   }
 ])
