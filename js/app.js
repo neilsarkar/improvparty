@@ -18,7 +18,7 @@ module.config([
         controller: 'ShowClassController'
       }).
       otherwise({
-        redirectTo: '/teams'
+        redirectTo: '/classes/new'
       })
   }
 ])
