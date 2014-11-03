@@ -9,6 +9,7 @@
 //
 // {
 //   "neil": ["marina", "brian", "annika"]
+//   ...
 // }
 
 Matcher = function(picks) {
@@ -23,7 +24,7 @@ Matcher = function(picks) {
   }
 
   function calculateTeams() {
-    teams = teams || {}
+    teams = {}
 
     // calculate global scores
     _.each(players, function(player) {
@@ -46,15 +47,14 @@ Matcher = function(picks) {
 
       while(teams[player].length < players.length ) {
         // create a pool that's an array of names with scores
-        var pool = createPool(teams[player].concat([player]))
-
-        var choice = findBestMatch(pool)
+        var pool = createPool(teams[player].concat([player])),
+            choice = findBestMatch(pool);
 
         // if nobody wants to play together, don't pad the roster
         if( !choice ) {
           break
         }
-        teams[player].push(choice)
+        teams[player].push(choice.name)
       }
     })
   }
@@ -65,7 +65,9 @@ Matcher = function(picks) {
      if( _.include(team, player) ) { return null }
 
      // score = outbound edges + inbound edges
-     var score = 0
+     var score = 0,
+         hasOutboundEdge;
+
      _.each(team, function(member) {
        // inbound edge -- they want to play with a team member
        if( _.include(picks[player], member) ) {
@@ -73,9 +75,12 @@ Matcher = function(picks) {
        }
        // outbound edge -- a team member wants to play with them
        if( _.include(picks[member], player) ) {
-         score++
+         score += 2
+         hasOutboundEdge = true
        }
      })
+
+     if( !hasOutboundEdge || score == 0 ) { return null }
      return {
        name: player,
        score: score,
@@ -85,6 +90,9 @@ Matcher = function(picks) {
   }
 
   function findBestMatch(pool) {
+    if( pool.length == 0 ) { return null }
+    if( pool.length == 1 ) { return pool[0] }
+
     // check to see if there's a winner with the highest score
     pool = _.sortBy(pool, function(candidate) {
       return candidate.score
