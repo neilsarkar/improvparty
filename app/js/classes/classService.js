@@ -21,11 +21,11 @@ angular.module('classes').service('classService', [
     }
 
     // TODO: move this to its own service
-    this.choices = function(className, username) {
+    this.choices = function(className) {
       return $firebase(ref.child('choices').child(className)).$asArray().$loaded()
     }
     this.addChoice = function(className, username, member) {
-      return $firebase(ref.child('choices').child(className).child(username)).$set(member.name, true)
+      return $firebase(ref.child('choices').child(className).child(username)).$set(member.slug, true)
     }
     this.removeChoice = function(className, username, member) {
       return $firebase(ref.child('choices').child(className).child(username)).$remove(name)

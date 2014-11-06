@@ -10,7 +10,6 @@ angular.module('classes').controller('ShowClassController', [
         if( CryptoJS.SHA1(member.slug).toString() == $routeParams.hash ) {
           $scope.currentUser = member
         }
-        member.hash = CryptoJS.SHA1(member.slug).toString()
       })
       if( !$scope.currentUser ) {
         $scope.authenticationFailed = true
@@ -28,7 +27,7 @@ angular.module('classes').controller('ShowClassController', [
     $scope.save = function() {
       _.each($scope.class.members, function(member) {
         if( member.chosen ) {
-          classService.addChoice($scope.class.name, $scope.currentUser.name, member)
+          classService.addChoice($scope.class.name, $scope.currentUser.slug, member)
         }
       })
 
