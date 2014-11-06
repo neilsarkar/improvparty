@@ -25,7 +25,6 @@ angular.module('classes').service('classService', [
       return $firebase(ref.child('choices').child(className)).$asArray().$loaded()
     }
     this.addChoice = function(className, username, member) {
-      console.log(arguments)
       return $firebase(ref.child('choices').child(className).child(username)).$set(member.name, true)
     }
     this.removeChoice = function(className, username, member) {

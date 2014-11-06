@@ -4,22 +4,23 @@
       <h1>{{class.name}}</h1>
 
       <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
-      <div ng-hide="currentUser">
-        Who are you?
-        <div ng-repeat="member in class.members">
-          <a ng-click="setSelf(member)">{{member.name || member.$id}}</a>
-        </div>
-      </div>
 
+      <div ng-show="authenticationFailed">
+        Sorry, looks like you followed a bad link. Bye! Come back never!
+      </div>
       <div ng-show="currentUser">
-        Who do you want to play with?
+        <h2>Welcome, {{currentUser.name.split(' ')[0]}}.</h2>
+
+        <p>
+          Who do you want to play with?
+        </p>
         <div ng-repeat="member in class.members">
           <label>
             <input ng-model="member.chosen" type="checkbox" />
-            {{member.name || member.$id}}
+            {{member.name}}
           </label>
         </div>
-        <a ng-click="save()">Save</a>
+        <a class="btn btn-primary" ng-click="save()">Save Picks</a>
       </div>
     </div>
   </div>

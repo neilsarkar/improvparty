@@ -6,16 +6,17 @@ module.config([
     $locationProvider.html5Mode(true)
 
     $routeProvider.
-      when('/teams', {
-        templateUrl: 'templates/teams.html'
-      }).
       when('/classes/new', {
         templateUrl: 'templates/classes/new.html',
         controller: 'NewClassController'
       }).
-      when('/classes/:className', {
+      when('/classes/:className/:hash', {
         templateUrl: 'templates/classes/show.html',
         controller: 'ShowClassController'
+      }).
+      when('/classes/:className/:hash/results', {
+        templateUrl: 'templates/classes/results.html',
+        controller: 'ResultsController'
       }).
       otherwise({
         redirectTo: '/classes/new'

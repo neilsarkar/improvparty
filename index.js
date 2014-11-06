@@ -4,12 +4,11 @@ var app = express()
 app.use(express.static(__dirname + '/bower_components'))
 app.use(express.static(__dirname + '/app'))
 
-console.log(__dirname)
-
 var routes = [
   '/teams',
   '/classes/new',
-  '/classes/:className'
+  '/classes/:className/:hash',
+  '/classes/:className/:hash/results'
 ]
 
 routes.forEach(function(route) {
