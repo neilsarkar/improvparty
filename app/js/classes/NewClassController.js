@@ -31,7 +31,7 @@ angular.module('classes').controller('NewClassController', [
         classService.addMember($scope.class.name, member)
       })
 
-      $location.path('classes/'+$scope.class.name)
+      alert('Class Created. FIXME: send email')
     }
   }
 ])
