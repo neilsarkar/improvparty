@@ -1,8 +1,10 @@
 var express = require('express')
 var app = express()
 
-// TODO: don't expose the entire directory just to get bower components working
-app.use(express.static(__dirname))
+app.use(express.static(__dirname + '/bower_components'))
+app.use(express.static(__dirname + '/app'))
+
+console.log(__dirname)
 
 var routes = [
   '/teams',
@@ -12,7 +14,7 @@ var routes = [
 
 routes.forEach(function(route) {
   app.get(route, function (req, res) {
-    res.sendFile('index.html', { root: __dirname })
+    res.sendFile('app/index.html', { root: __dirname })
   })
 })
 
