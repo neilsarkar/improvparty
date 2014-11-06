@@ -90,6 +90,23 @@ describe "Matcher", ->
         wave: ['jillian', 'eleanor', 'brian'],
         brian: ['jillian', 'eleanor', 'wave']
       }
+    },
+    {
+      description: "adds someone to the team even if they haven't filled it out",
+      input: {
+        jillian: ['eleanor', 'wave', 'brian'],
+        eleanor: ['david', 'jillian'],
+        wave: ['david'],
+        brian: ['david'],
+        david: []
+      },
+      output: {
+        jillian: ['eleanor', 'david', 'wave', 'brian'],
+        eleanor: ['jillian', 'david', 'wave', 'brian'],
+        wave: ['david'],
+        brian: ['david'],
+        david: []
+      }
     }
   ]
 
