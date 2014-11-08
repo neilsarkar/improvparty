@@ -5,7 +5,7 @@ angular.module('classes').controller('ShowClassController', [
       name: $routeParams.className
     }
 
-    classService.find($scope.class.name).then(function yes(members){
+    classService.find($scope.class.name).$loaded(function yes(members){
       members.forEach(function(member) {
         if( classService.hashMember(member) == $routeParams.hash ) {
           $scope.currentUser = member

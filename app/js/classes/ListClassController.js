@@ -5,9 +5,9 @@ angular.module('classes').controller('ListClassController', [
       name: $routeParams.className
     }
 
-    classService.find($scope.class.name).then(function yes(members){
+    classService.find($scope.class.name).$loaded(function yes(members){
       members.forEach(function(member) {
-        member.hash = classService.hash(member)
+        member.hash = classService.hashMember(member)
       })
       $scope.class.members = members
     }, function no() {
