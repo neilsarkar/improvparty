@@ -1,14 +1,26 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12" ng-cloak>
+      <h1>
+        {{class.name}}
+        <i class="fa fa-circle-o-notch fa-spin" ng-hide="incomplete || matches.length"></i>
+      </h1>
+
       <div class="incomplete" ng-show="incomplete">
-        Only {{incomplete}} people have filled this out.
-        <br /><br />
-        You'll need to wait for 8 or more, this page will update as people fill it out.
+        <p>
+          Only {{incomplete}} people have filled this out.
+        </p>
+        <p>
+          You'll need to wait for 8 or more. This page will update as people fill it out.
+        </p>
+        <p>
+          You can <a ng-href="classes/{{class.name}}/{{currentUser.hash}}">change your picks</a> if you want.
+        </p>
       </div>
 
+      <h2 ng-show="matches.length">Your optimal team:</h2>
       <ol class="matches" ng-show="matches.length">
-        <li ng-repeat="match in matches">
+        <li ng-repeat="match in matches" class="m-member s-chosen">
           {{match}}
         </li>
       </ol>

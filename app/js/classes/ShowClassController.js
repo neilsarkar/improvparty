@@ -1,6 +1,7 @@
 angular.module('classes').controller('ShowClassController', [
   '$scope', '$routeParams', 'classService', '$location', 'Choice',
   function($scope, $routeParams, classService, $location, Choice) {
+    $scope.$root.bodyClass = 'classes-show'
     $scope.class = {
       name: $routeParams.className
     }

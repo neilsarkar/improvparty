@@ -1,7 +1,7 @@
 angular.module('classes').controller('NewClassController', [
   '$scope', 'classService', '$location',
   function($scope, classService, $location) {
-    $scope.$root.bodyClass = 'new-class'
+    $scope.$root.bodyClass = 'classes-new'
 
     $scope.class = {
       members: []

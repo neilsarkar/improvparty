@@ -1,2 +1,45 @@
-a { cursor: pointer; }
+$color-primary: #8365BF;
+$color-accent: #A1BF65;
+$color-grey: #BEBBC4;
+
+* { box-sizing: border-box; }
+a {
+  cursor: pointer; color: $color-primary;
+  &:hover { color: $color-primary; text-decoration: underline; }
+}
 label { cursor: pointer; }
+.btn-primary {
+  background-color: $color-primary;
+  border-color: $color-primary;
+  &:hover {
+    box-shadow: 0 2px 10px $color-grey;
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+h1 { font-size: 16px; color: $color-grey; }
+h2 { font-size: 14px; margin: 1em 0; }
+
+i.fa-circle-o-notch { color: $color-grey; }
+body.classes-show {
+  input[type=checkbox] { display: none }
+  .submit { text-align: center; border-top: 1px solid $color-grey; padding: 2em; margin-top: 1em; }
+}
+
+ol { padding: 0; }
+
+.m-member {
+  display: inline-block;
+  margin-right: .5em;
+  border: 1px solid $color-grey;
+  border-radius: 3px;
+  padding: 1em;
+  margin-bottom: 1em;
+  font-weight: normal;
+  &.s-chosen {
+    border-color: $color-primary;
+    background-color: $color-primary;
+    box-shadow: 0 2px 10px $color-grey;
+    color: white;
+  }
+}

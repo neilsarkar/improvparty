@@ -1,26 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <h1>{{class.name}}</h1>
-
-      <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
+    <div class="col-sm-12" ng-cloak>
+      <h1>
+        {{class.name}}
+        <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
+      </h1>
 
       <div ng-show="authenticationFailed">
         Sorry, looks like you followed a bad link. Bye! Come back never!
       </div>
       <div ng-show="currentUser">
-        <h2>Welcome, {{currentUser.name.split(' ')[0]}}.</h2>
-
-        <p>
-          Whom do you want to play with?
-        </p>
-        <div ng-repeat="member in class.members">
-          <label>
-            <input ng-model="member.chosen" type="checkbox" />
-            {{member.name}}
-          </label>
+        <h2>Welcome, {{currentUser.name.split(' ')[0]}}. Whom do you want to play with?</h2>
+        <label ng-repeat="member in class.members" class="m-member" ng-class="{'s-chosen': member.chosen}">
+          <input ng-model="member.chosen" type="checkbox" />
+          {{member.name}}
+        </label>
+        <div class="submit">
+          <a class="btn btn-primary" ng-click="save()">Save Picks</a>
         </div>
-        <a class="btn btn-primary" ng-click="save()">Save Picks</a>
       </div>
     </div>
   </div>
