@@ -43,5 +43,6 @@
   "bugs": {
     "url": "https://github.com/neilsarkar/improvparty/issues"
   },
-  "homepage": "https://github.com/neilsarkar/improvparty"
+  "homepage": "https://github.com/neilsarkar/improvparty",
+  "engine": "node 0.10.26"
 }
