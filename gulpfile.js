@@ -38,4 +38,5 @@ gulp.task('watch', function() {
   gulp.watch(paths.css, ['compile_stylesheets'])
 })
 
+gulp.task('build', ['compile_scripts', 'compile_stylesheets'])
 gulp.task('default', ['watch', 'compile_scripts', 'compile_stylesheets'])
