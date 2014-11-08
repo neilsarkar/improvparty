@@ -1,6 +1,4 @@
-var module = angular.module('improvparty', ['ngRoute', 'classes'])
-
-module.config([
+angular.module('improvparty').config([
   '$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true)
@@ -9,6 +7,10 @@ module.config([
       when('/classes/new', {
         templateUrl: 'templates/classes/new.html',
         controller: 'NewClassController'
+      }).
+      when('/classes/:className/list', {
+        templateUrl: 'templates/classes/list.html',
+        controller: 'ListClassController'
       }).
       when('/classes/:className/:hash', {
         templateUrl: 'templates/classes/show.html',

@@ -3,7 +3,7 @@ angular.module('classes').controller('ResultsController', [
   function($scope, $routeParams, classService) {
     classService.find($routeParams.className).then(function yes(members){
       members.forEach(function(member) {
-        if( CryptoJS.SHA1(member.slug).toString() == $routeParams.hash ) {
+        if( classService.hashMember(member) == $routeParams.hash ) {
           $scope.currentUser = member
         }
       })

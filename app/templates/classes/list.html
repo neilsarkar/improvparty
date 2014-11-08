@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>{{class.name}}</h1>
+
+      <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
+      <div ng-cloak ng-show="class.members">
+        Who are you?
+        <div ng-repeat="member in class.members">
+          <a ng-href="classes/{{class.name}}/{{member.hash}}">{{member.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

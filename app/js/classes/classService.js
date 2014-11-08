@@ -31,6 +31,12 @@ angular.module('classes').service('classService', [
       return $firebase(ref.child('choices').child(className).child(username)).$remove(name)
     }
 
+    // hashMember returns authentication hash for a user
+    // member = {slug: "neil"} || "neil"
+    this.hashMember = function(member) {
+      return CryptoJS.SHA1(member.slug || member).toString()
+    }
+
     function slug(name) {
       return name.replace(/[^A-z]/g, '-').toLowerCase()
     }
