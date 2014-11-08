@@ -28,7 +28,6 @@ angular.module('classes').controller('ResultsController', [
       } else {
         $scope.incomplete = null
         Choice.matrix($routeParams.className).then(function yes(matrix) {
-          console.log(matrix)
           var matcher = new Matcher(matrix)
           $scope.matches = matcher.teams()[$scope.currentUser.slug]
         }, function no() {
