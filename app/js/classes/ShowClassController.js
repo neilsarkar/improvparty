@@ -1,6 +1,6 @@
 angular.module('classes').controller('ShowClassController', [
-  '$scope', '$routeParams', 'classService', '$location',
-  function($scope, $routeParams, classService, $location) {
+  '$scope', '$routeParams', 'classService', '$location', 'Choice',
+  function($scope, $routeParams, classService, $location, Choice) {
     $scope.class = {
       name: $routeParams.className
     }
@@ -27,7 +27,7 @@ angular.module('classes').controller('ShowClassController', [
     $scope.save = function() {
       _.each($scope.class.members, function(member) {
         if( member.chosen ) {
-          classService.addChoice($scope.class.name, $scope.currentUser.slug, member)
+          Choice.add($scope.class.name, $scope.currentUser.slug, member)
         }
       })
 

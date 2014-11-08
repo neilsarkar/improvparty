@@ -23,16 +23,18 @@ angular.module('classes').controller('ResultsController', [
     })
 
     function checkChoices() {
-      if( choices.length < 8 ) {
-        console.log(choices)
+      if( choices.length < 2 ) {
         $scope.incomplete = choices.length
       } else {
-        var picks = {}
-        choices.forEach(function(member) {
-          // FIXME: set up picks
+        $scope.incomplete = null
+        Choice.matrix($routeParams.className).then(function yes(matrix) {
+          console.log(matrix)
+          var matcher = new Matcher(matrix)
+          $scope.matches = matcher.teams()[$scope.currentUser.slug]
+        }, function no() {
+          console.error("Couldn't load class matrix")
         })
-        var matcher = new Matcher(picks)
-        $scope.matches = matcher.teams($scope.currentUser.slug)
+
       }
     }
   }
