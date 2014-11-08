@@ -23,7 +23,7 @@ angular.module('classes').controller('ResultsController', [
     })
 
     function checkChoices() {
-      if( choices.length < 2 ) {
+      if( choices.length < 8 ) {
         $scope.incomplete = choices.length
       } else {
         $scope.incomplete = null
