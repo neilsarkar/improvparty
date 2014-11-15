@@ -3,6 +3,7 @@ $color-accent: #A1BF65;
 $color-grey: #BEBBC4;
 
 * { box-sizing: border-box; }
+body { padding-top: 50px; }
 a {
   cursor: pointer; color: $color-primary;
   &:hover { color: $color-primary; text-decoration: underline; }
@@ -17,9 +18,8 @@ label { cursor: pointer; }
     border-color: $color-primary;
   }
 }
-h1 { font-size: 16px; color: $color-grey; }
+h1 { font-size: 16px;}
 h2 { font-size: 14px; margin: 1em 0; }
-
 i.fa-circle-o-notch { color: $color-grey; }
 body.classes-show {
   input[type=checkbox] { display: none }

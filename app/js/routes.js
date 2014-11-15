@@ -20,8 +20,12 @@ angular.module('improvparty').config([
         templateUrl: 'templates/classes/results.html',
         controller: 'ResultsController'
       }).
+      when('/classes', {
+        templateUrl: 'templates/classes/all.html',
+        controller: 'ClassesController'
+      }).
       otherwise({
-        redirectTo: '/classes/new'
+        redirectTo: '/classes'
       })
   }
 ])

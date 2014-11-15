@@ -6,6 +6,7 @@ app.use(express.static(__dirname + '/app'))
 
 var routes = [
   '/teams',
+  '/classes',
   '/classes/new',
   '/classes/:className/:hash',
   '/classes/:className/:hash/results'
