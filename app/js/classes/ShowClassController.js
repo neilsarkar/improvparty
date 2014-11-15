@@ -8,9 +8,12 @@ angular.module('classes').controller('ShowClassController', [
 
     classService.find($scope.class.name).$loaded(function yes(members){
       members.forEach(function(member) {
-        if( classService.hashMember(member) == $routeParams.hash ) {
-          $scope.currentUser = member
+        var hash = classService.hashMember(member)
+        if( hash == $routeParams.hash ) {
+          $scope.currentUser = _.extend(member, {hash: hash})
         }
+        window.localStorage.setItem('currentUser', JSON.stringify($scope.currentUser))
+        classService.save($scope.class.name)
       })
       if( !$scope.currentUser ) {
         $scope.authenticationFailed = true

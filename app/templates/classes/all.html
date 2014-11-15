@@ -1,7 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12" ng-cloak>
       <h1>Your classes</h1>
+
+      <div ng-repeat="class in classes">
+        <a ng-href="classes/{{class}}/{{currentUser.hash}}">{{class}}</a>
+      </div>
+
+      <div ng-show="!classes.length">
+        No classes yet.
+      </div>
+
+      <hr />
+
+      <a href="/classes/new">Add a new class</a>
     </div>
   </div>
 </div>

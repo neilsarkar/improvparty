@@ -20,6 +20,19 @@ angular.module('classes').service('classService', [
       return $firebase(table.child(className)).$asArray()
     }
 
+    this.save = function(className) {
+      var classes = this.all();
+
+      if( classes.indexOf(className) < 0 ) {
+        classes.push(className)
+        window.localStorage.setItem('classes', JSON.stringify(classes))
+      }
+    }
+
+    this.all = function() {
+      return JSON.parse(window.localStorage.getItem('classes')) || []
+    }
+
     // hashMember returns authentication hash for a user
     // member = {slug: "neil"} || "neil"
     this.hashMember = function(member) {
