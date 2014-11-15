@@ -2,12 +2,21 @@ Sup.
 
 Sawdust:
 
-11/7
+__11/7__
 * get protractor tests to run standalone
---
-11/8
+
+__11/8__
 * use a constant for the firebase root ref
 * implement auth service that stores current user slug in localStorage
 * drop 'Service' from classService
 * clear choices before adding more
 * allow choosing people who haven't made their choices
+
+--
+
+__11/15__
+* show matching algorithm at work
+* show auto-updating list with locks
+* don't exclude originating player from team list
+* get a better stack trace for failing karma tests
+* don't match popular people with groups when there are no inbound edges
