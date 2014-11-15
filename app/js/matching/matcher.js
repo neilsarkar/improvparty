@@ -20,8 +20,23 @@ Matcher = function(picks) {
 
   // calculate all teams
   self.teams = function() {
-    if( !teams ) { calculateTeams(); }
-    return teams
+    if( teams ) { return teams; }
+
+    teams = {}
+
+    // calculate team for each player
+    _.each(players, function(player) {
+      // initialize empty matches array
+      teams[player] = [player]
+
+      while(teams[player].length < players.length ) {
+        var step = self.step(teams[player]);
+
+        if( !step ) break;
+        teams[player] = step.team
+      }
+      teams[player] = _.reject(teams[player], function(p) { return p == player })
+    })
   }
 
   // add next best match to a team
@@ -40,26 +55,10 @@ Matcher = function(picks) {
     }
   }
 
-  function calculateTeams() {
-    teams = {}
-
-    // calculate team for each player
-    _.each(players, function(player) {
-      // initialize empty matches array
-      teams[player] = [player]
-
-      while(teams[player].length < players.length ) {
-        var step = self.step(teams[player]);
-
-        if( !step ) break;
-        teams[player] = step.team
-      }
-      teams[player] = _.reject(teams[player], function(p) { return p == player })
-    })
-  }
-
+  // createPool makes a sorted set of players that are most compatible with the current team.
+  // the sorting algorithm is local score tiebroken by general compatibility.
   function createPool(team) {
-    return _.compact(players.map(function(player) {
+    var pool = players.map(function(player) {
       // don't include members of the team in the pool
       if( _.include(team, player) ) { return null }
 
@@ -82,10 +81,13 @@ Matcher = function(picks) {
       if( !hasOutboundEdge || score == 0 ) { return null }
       return {
         player: player,
-        score: score,
-        globalScore: compatibilityScores[player]
+        score: score * 100 + compatibilityScores[player]
       }
-    }))
+    })
+
+    return _.sortBy(_.compact(pool), function(candidate) {
+      return candidate.score
+    }).reverse()
   }
 
   function findBestMatch(pool) {
@@ -93,24 +95,10 @@ Matcher = function(picks) {
     if( pool.length == 1 ) { return pool[0] }
 
     // check to see if there's a winner with the highest score
-    pool = _.sortBy(pool, function(candidate) {
-      return candidate.score
-    }).reverse()
     if( pool[0].score == 0 ) {
       return null
     }
     if( pool[0].score > pool[1].score ) {
-      return pool[0]
-    }
-
-    // tiebreaker: most compatible (highest total score)
-    pool = _.select(pool, function(candidate) {
-      return candidate.score == pool[0].score
-    })
-    pool = _.sortBy(pool, function(candidate) {
-      return candidate.globalScore
-    }).reverse()
-    if( pool[0].globalScore > pool[1].globalScore ) {
       return pool[0]
     }
 

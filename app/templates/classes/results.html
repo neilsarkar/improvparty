@@ -18,12 +18,26 @@
         </p>
       </div>
 
-      <h2 ng-show="matches.length">Your optimal team:</h2>
-      <ol class="matches" ng-show="matches.length">
-        <li ng-repeat="match in matches" class="m-member s-chosen">
-          {{match}}
-        </li>
-      </ol>
+      <div ng-hide="incomplete">
+        <h2>Your optimal team:</h2>
+        <ol class="matches">
+          <li ng-repeat="match in matches" class="m-member s-chosen">
+            {{match}}
+          </li>
+        </ol>
+      </div>
+      <hr />
+      <div ng-show="pool.length">
+        <h2>Options:</h2>
+        <ul class="pool">
+          <li ng-repeat="candidate in pool">
+            {{candidate.score}}
+            <span class="m-member">
+              {{candidate.name}}
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

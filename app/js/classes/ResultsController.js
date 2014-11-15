@@ -1,6 +1,6 @@
 angular.module('classes').controller('ResultsController', [
-  '$scope', '$routeParams', 'classService', 'Choice',
-  function($scope, $routeParams, classService, Choice) {
+  '$scope', '$routeParams', 'classService', 'Choice', '$timeout',
+  function($scope, $routeParams, classService, Choice, $timeout) {
     var choices = [];
 
     $scope.class = {name: $routeParams.className}
@@ -30,11 +30,30 @@ angular.module('classes').controller('ResultsController', [
         $scope.incomplete = choices.length
       } else {
         $scope.incomplete = null
+        $scope.matches = [classService.slugToName($scope.currentUser.slug)]
         Choice.matrix($routeParams.className).then(function yes(matrix) {
-          var matcher = new Matcher(matrix)
-          $scope.matches = matcher.teams()[$scope.currentUser.slug].map(function(member) {
-            return classService.slugToName(member)
-          })
+          var matcher = new Matcher(matrix),
+              team = [$scope.currentUser.slug];
+
+          nextStep()
+
+          function nextStep() {
+            var step = matcher.step(team)
+            if( !step ) return $scope.pool = [];
+            $scope.pool = step.pool.map(function(candidate) {
+              return {
+                name: classService.slugToName(candidate.player),
+                score: parseInt(candidate.score / 100)
+              }
+            })
+            $timeout(function() {
+              team = step.team
+              $scope.matches = team.map(function(member) {
+                return classService.slugToName(member)
+              })
+              nextStep()
+            }, 1000)
+          }
         }, function no() {
           console.error("Couldn't load class matrix")
         })

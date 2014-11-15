@@ -26,7 +26,8 @@ body.classes-show {
   .submit { text-align: center; border-top: 1px solid $color-grey; padding: 2em; margin-top: 1em; }
 }
 
-ol { padding: 0; }
+ol, ul { padding: 0; }
+li { list-style: none; }
 
 .m-member {
   display: inline-block;
