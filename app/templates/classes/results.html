@@ -8,14 +8,25 @@
 
       <div class="incomplete" ng-show="incomplete">
         <p>
-          Only {{incomplete}} people have filled this out.
+          You'll need to wait for {{threshold}} or more people to make their picks.
         </p>
         <p>
-          You'll need to wait for 8 or more. This page will update as people fill it out.
+          This page will update as people fill it out.
         </p>
         <p>
           You can <a ng-href="classes/{{class.name}}/{{currentUser.hash}}">change your picks</a> if you want.
         </p>
+
+        <ul>
+          <li ng-repeat="participant in participants" class="m-member s-locked-in">
+            <i class="fa fa-lock"></i>
+            {{participant}}
+          </li>
+          <li ng-repeat="abstainer in abstainers" class="m-member s-inactive">
+            <i class="fa fa-cog fa-spin"></i>
+            {{abstainer.name}}
+          </li>
+        </ul>
       </div>
 
       <div ng-hide="incomplete">

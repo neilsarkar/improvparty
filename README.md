@@ -18,3 +18,5 @@ __11/15__
 * show auto-updating list with locks
 * get a better stack trace for failing karma tests
 * don't match popular people with groups when there are no inbound edges
+* use a filter for slugToName
+* only spin cog when user is actually present and filling out their picks

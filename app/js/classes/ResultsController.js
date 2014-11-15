@@ -4,8 +4,10 @@ angular.module('classes').controller('ResultsController', [
     var choices = [];
 
     $scope.class = {name: $routeParams.className}
+    $scope.threshold = 12
 
     classService.find($routeParams.className).$loaded(function yes(members){
+      $scope.class.members = members;
       members.forEach(function(member) {
         if( classService.hashMember(member) == $routeParams.hash ) {
           member.hash = $routeParams.hash
@@ -26,8 +28,15 @@ angular.module('classes').controller('ResultsController', [
     })
 
     function checkChoices() {
-      if( choices.length < 4 ) {
-        $scope.incomplete = choices.length
+      if( choices.length < $scope.threshold ) {
+        $scope.incomplete = true
+        $scope.participants = choices.map(function(slug) {
+          return classService.slugToName(slug)
+        })
+
+        $scope.abstainers = $scope.class.members.filter(function(member) {
+          return choices.indexOf(member.slug) < 0;
+        })
       } else {
         $scope.incomplete = null
         $scope.matches = [classService.slugToName($scope.currentUser.slug)]
@@ -57,7 +66,6 @@ angular.module('classes').controller('ResultsController', [
         }, function no() {
           console.error("Couldn't load class matrix")
         })
-
       }
     }
   }
