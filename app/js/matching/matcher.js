@@ -25,7 +25,7 @@ Matcher = function(picks) {
     teams = {}
 
     // calculate team for each player
-    _.each(players, function(player) {
+    players.forEach(function(player) {
       // initialize empty matches array
       teams[player] = [player]
 
@@ -37,6 +37,8 @@ Matcher = function(picks) {
       }
       teams[player] = _.reject(teams[player], function(p) { return p == player })
     })
+
+    return teams
   }
 
   // add next best match to a team
@@ -104,7 +106,7 @@ Matcher = function(picks) {
 
     // tiebreaker: random
     pool = _.select(pool, function(candidate) {
-      return candidate.globalScore == pool[0].globalScore
+      return candidate.score == pool[0].score
     })
     return _.sample(pool)
   }
@@ -118,7 +120,7 @@ Matcher = function(picks) {
       var score = picks[player].length
 
       // count total incoming edges
-      _.each(players, function(otherPlayer) {
+      players.forEach(function(otherPlayer) {
         if( player == otherPlayer ) { return; }
         if( _.include(picks[otherPlayer], player) ) { score++ }
       })

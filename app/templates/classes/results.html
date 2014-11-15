@@ -19,7 +19,7 @@
       </div>
 
       <div ng-hide="incomplete">
-        <h2>Your optimal team:</h2>
+        <h2>Your optimal team</h2>
         <ol class="matches">
           <li ng-repeat="match in matches" class="m-member s-chosen">
             {{match}}
@@ -28,7 +28,7 @@
       </div>
       <hr />
       <div ng-show="pool.length">
-        <h2>Options:</h2>
+        <h2>Best matches</h2>
         <ul class="pool">
           <li ng-repeat="candidate in pool">
             {{candidate.score}}

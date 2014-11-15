@@ -15,8 +15,6 @@ __11/8__
 --
 
 __11/15__
-* show matching algorithm at work
 * show auto-updating list with locks
-* don't exclude originating player from team list
 * get a better stack trace for failing karma tests
 * don't match popular people with groups when there are no inbound edges

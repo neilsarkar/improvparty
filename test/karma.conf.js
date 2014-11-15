@@ -15,7 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/dist/application.js',
+      'bower_components/angular/angular.min.js',
+      'bower_components/angular-route/angular-route.min.js',
+      'bower_components/firebase/firebase.js',
+      'bower_components/angularfire/dist/angularfire.js',
+      'bower_components/underscore/underscore-min.js',
+      'app/js/modules.js',
+      'app/js/**/*.js',
       'test/unit/spec_helper.coffee',
       'test/unit/**/*.coffee'
     ],

@@ -10,7 +10,7 @@
         Sorry, looks like you followed a bad link. Bye! Come back never!
       </div>
       <div ng-show="currentUser">
-        <h2>Welcome, {{currentUser.name.split(' ')[0]}}. Whom do you want to play with?</h2>
+        <h2>Welcome, {{currentUser.name.split(' ')[0]}}. Whom do you want to play with? Your picks are private.</h2>
         <label ng-repeat="member in class.members" class="m-member" ng-class="{'s-chosen': member.chosen}">
           <input ng-model="member.chosen" type="checkbox" />
           {{member.name}}

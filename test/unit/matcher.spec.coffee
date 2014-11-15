@@ -1,8 +1,8 @@
 describe "Matcher", ->
-  # Always pick the first in the array when we get to random tiebreak
+  # Always pick the first alphabetical entry in the array when we get to random tiebreak
   beforeEach ->
     sinon.stub _, "sample", (array) ->
-      array[0]
+      _.sortBy(array, (member)->member.player)[0]
 
   afterEach ->
     _.sample.restore()
@@ -51,11 +51,7 @@ describe "Matcher", ->
         koral: ['eleanor']
       },
       output: {
-        neil: ['jillian', 'stephanie', 'eleanor', 'koral'],
-        eleanor: ['koral'],
-        jillian: ['neil', 'stephanie', 'eleanor', 'koral'],
-        stephanie: ['jillian', 'neil', 'eleanor', 'koral'],
-        koral: ['eleanor']
+        neil: ['jillian', 'stephanie', 'eleanor', 'koral']
       }
     },
     {
@@ -76,19 +72,19 @@ describe "Matcher", ->
       }
     },
     {
-      # randomness stubbed above to be the order the keys are provided here
+      # randomness stubbed above to be alphabetical
       description: "matches randomly on ties",
       input: {
-        jillian: ['eleanor', 'wave', 'brian'],
+        jillian: ['brian', 'eleanor', 'wave', ],
         eleanor: ['jillian', 'brian', 'wave'],
         wave: ['brian', 'jillian', 'eleanor'],
         brian: ['eleanor', 'jillian', 'wave']
       },
       output: {
-        jillian: ['eleanor', 'wave', 'brian'],
-        eleanor: ['jillian', 'wave', 'brian'],
-        wave: ['jillian', 'eleanor', 'brian'],
-        brian: ['jillian', 'eleanor', 'wave']
+        jillian: ['brian', 'eleanor', 'wave'],
+        eleanor: ['brian', 'jillian', 'wave'],
+        wave: ['brian', 'eleanor', 'jillian'],
+        brian: ['eleanor', 'jillian', 'wave']
       }
     },
     {
@@ -101,8 +97,8 @@ describe "Matcher", ->
         david: []
       },
       output: {
-        jillian: ['eleanor', 'david', 'wave', 'brian'],
-        eleanor: ['jillian', 'david', 'wave', 'brian'],
+        jillian: ['eleanor', 'david', 'brian', 'wave'],
+        eleanor: ['jillian', 'david', 'brian', 'wave'],
         wave: ['david'],
         brian: ['david'],
         david: []
