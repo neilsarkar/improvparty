@@ -3,3 +3,4 @@ node_modules
 npm-debug.log
 app/dist/
 .sass-cache
+.DS_Store
