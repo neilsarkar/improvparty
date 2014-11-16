@@ -1,7 +1,7 @@
 exports.test = function() {
   describe('creating a new class', function() {
     it('works with seed data', function() {
-      browser.get('/')
+      browser.get('/classes/new')
 
       var users = [
         { name: "Stephanie Streisand", email: "stephaniestreisand@gmail.com"},

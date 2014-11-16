@@ -4,7 +4,7 @@ angular.module('classes').controller('ResultsController', [
     var choices = [];
 
     $scope.class = {name: $routeParams.className}
-    $scope.threshold = 12
+    $scope.threshold = 16
 
     classService.find($routeParams.className).$loaded(function yes(members){
       $scope.class.members = members;
@@ -48,7 +48,7 @@ angular.module('classes').controller('ResultsController', [
 
           function nextStep() {
             var step = matcher.step(team)
-            if( !step ) return $scope.pool = [];
+            if( !step || team.length >= 8 ) { return $scope.pool = []; }
             $scope.pool = step.pool.map(function(candidate) {
               return {
                 name: classService.slugToName(candidate.player),
