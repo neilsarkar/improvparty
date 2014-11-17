@@ -1,19 +1,19 @@
 angular.module('classes').controller('ShowClassController', [
-  '$scope', '$routeParams', 'classService', '$location', 'Choice',
-  function($scope, $routeParams, classService, $location, Choice) {
+  '$scope', '$routeParams', 'Class', '$location', 'Choice',
+  function($scope, $routeParams, Class, $location, Choice) {
     $scope.$root.bodyClass = 'classes-show'
     $scope.participants = []
     $scope.class = {
       name: $routeParams.className
     }
 
-    classService.find($scope.class.name).$loaded(function yes(members){
+    Class.find($scope.class.name).$loaded(function yes(members){
       members.forEach(function(member) {
-        var hash = classService.hashMember(member)
+        var hash = Class.hashMember(member)
         if( hash == $routeParams.hash ) {
           $scope.currentUser = _.extend(member, {hash: hash})
           window.localStorage.setItem('currentUser', JSON.stringify($scope.currentUser))
-          classService.save($scope.class.name)
+          Class.save($scope.class.name)
         }
       })
       if( !$scope.currentUser ) {

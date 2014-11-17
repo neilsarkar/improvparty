@@ -1,6 +1,6 @@
 angular.module('classes').controller('NewClassController', [
-  '$scope', 'classService', '$location',
-  function($scope, classService, $location) {
+  '$scope', 'Class', '$location',
+  function($scope, Class, $location) {
     $scope.$root.bodyClass = 'classes-new'
 
     $scope.class = {
@@ -28,7 +28,7 @@ angular.module('classes').controller('NewClassController', [
 
     $scope.create = function() {
       _.each($scope.class.members, function(member) {
-        classService.addMember($scope.class.name, member)
+        Class.addMember($scope.class.name, member)
       })
 
       alert('Class Created. FIXME: send email')

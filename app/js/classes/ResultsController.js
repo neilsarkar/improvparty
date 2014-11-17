@@ -1,15 +1,15 @@
 angular.module('classes').controller('ResultsController', [
-  '$scope', '$routeParams', 'classService', 'Choice', '$timeout',
-  function($scope, $routeParams, classService, Choice, $timeout) {
+  '$scope', '$routeParams', 'Class', 'Choice', '$timeout',
+  function($scope, $routeParams, Class, Choice, $timeout) {
     var choices = [];
 
     $scope.class = {name: $routeParams.className}
     $scope.threshold = 16
 
-    classService.find($routeParams.className).$loaded(function yes(members){
+    Class.find($routeParams.className).$loaded(function yes(members){
       $scope.class.members = members;
       members.forEach(function(member) {
-        if( classService.hashMember(member) == $routeParams.hash ) {
+        if( Class.hashMember(member) == $routeParams.hash ) {
           member.hash = $routeParams.hash
           $scope.currentUser = member
         }

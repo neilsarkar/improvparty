@@ -1,4 +1,4 @@
-angular.module('classes').service('classService', [
+angular.module('classes').service('Class', [
   '$firebase',
   function($firebase) {
     var ref = new Firebase('crackling-inferno-9653.firebaseIO.com'),
