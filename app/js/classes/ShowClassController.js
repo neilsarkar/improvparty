@@ -46,10 +46,14 @@ angular.module('classes').controller('ShowClassController', [
 
     // TODO: clear choices before setting them here
     $scope.save = function() {
-      _.each($scope.class.members, function(member) {
-        if( member.chosen ) {
-          Choice.add($scope.class.name, $scope.currentUser.slug, member)
-        }
+      Choice.deleteForUser($scope.class.name, $scope.currentUser.slug).then(function yes() {
+        _.each($scope.class.members, function(member) {
+          if( member.chosen ) {
+            Choice.add($scope.class.name, $scope.currentUser.slug, member)
+          }
+        })
+      }, function no() {
+        window.alert("Couldn't set your picks.")
       })
 
       $location.path('classes/'+$scope.class.name+'/'+$routeParams.hash+'/results')

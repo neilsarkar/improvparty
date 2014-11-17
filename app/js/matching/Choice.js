@@ -13,6 +13,9 @@ angular.module('matching').service('Choice', [
     this.add = function(className, username, member) {
       return $firebase(table.child(className).child(username)).$set(member.slug, true)
     }
+    this.deleteForUser = function(className, username) {
+      return $firebase(table.child(className).child(username)).$remove()
+    }
     this.matrix = function(className) {
       var deferred = $q.defer()
       table.child(className).on('value', function(snapshot) {
