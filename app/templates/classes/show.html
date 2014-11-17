@@ -1,11 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12" ng-cloak>
-      <h1>
-        {{class.name}}
-        <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
-      </h1>
+<div class="container" ng-cloak>
+  <h1>
+    {{class.name}}
+    <i class="fa fa-circle-o-notch fa-spin" ng-hide="class.members.length"></i>
+  </h1>
 
+  <div class="row">
+    <div class="col-sm-8 col-sm-push-4">
       <div ng-show="authenticationFailed">
         Sorry, looks like you followed a bad link. Bye! Come back never!
       </div>
@@ -20,5 +20,18 @@
         </div>
       </div>
     </div>
+    <aside class="col-sm-4 col-sm-pull-8">
+      <h2>Class Picks Status</h2>
+      <ul>
+        <li ng-repeat="participant in participants" class="m-member t-list s-locked-in">
+          <i class="fa fa-lock"></i>
+          {{participant}}
+        </li>
+        <li ng-repeat="abstainer in abstainers" class="m-member t-list s-inactive">
+          <i class="fa fa-cog fa-spin"></i>
+          {{abstainer.name}}
+        </li>
+      </ul>
+    </aside>
   </div>
 </div>

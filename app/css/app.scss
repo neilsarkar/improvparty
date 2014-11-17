@@ -29,6 +29,11 @@ body.classes-show {
 ol, ul { padding: 0; }
 li { list-style: none; }
 
+aside {
+  color: $color-grey;
+  ul { border-right: 1px dashed $color-grey; }
+}
+
 .m-member {
   display: inline-block;
   margin-right: .5em;
@@ -50,5 +55,16 @@ li { list-style: none; }
   &.s-inactive {
     color: $color-grey;
     border-color: $color-grey;
+  }
+  &.t-list {
+    padding: .5em;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    border-style: dashed;
+    margin: 0;
+    display: block;
+    &:first-child {
+      border-width: 1px 0;
+    }
   }
 }
