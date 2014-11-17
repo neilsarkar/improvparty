@@ -1,19 +1,8 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    sass = require('gulp-sass');
-
-var paths = {
-  js: [
-    'bower_components/angular/angular.min.js',
-    'bower_components/angular-route/angular-route.min.js',
-    'bower_components/firebase/firebase.js',
-    'bower_components/angularfire/dist/angularfire.js',
-    'bower_components/underscore/underscore-min.js',
-    'app/js/modules.js',
-    'app/js/**/*.js'
-  ],
-  css: 'app/css/*.scss'
-}
+    sass = require('gulp-sass'),
+    fs = require('fs'),
+    paths = JSON.parse(fs.readFileSync('./manifest.json', 'utf8'));
 
 gulp.task('compile_scripts', function() {
   gulp.src(paths.js).
