@@ -3,9 +3,6 @@ Sawdust:
 __11/7__
 * get protractor tests to run standalone
 
-__11/8__
-* implement auth service that stores current user slug in localStorage
-
 --
 
 __11/15__
