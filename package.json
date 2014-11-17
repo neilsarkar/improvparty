@@ -35,9 +35,10 @@
     "test": "./node_modules/karma/bin/karma start test/karma.conf.js",
     "prewebdriver": "./node_modules/protractor/bin/webdriver-manager update",
     "webdriver": "./node_modules/protractor/bin/webdriver-manager start",
-    "e2e": "./node_modules/protractor/bin/protractor test/protractor.conf.js",
-    "e2econsole": "./node_modules/protractor/bin/elementexplorer.js http://localhost:3000",
-    "e2edebug": "./node_modules/protractor/bin/protractor debug tests/protractor.conf"
+    "preprotractor": "./node_modules/protractor/bin/webdriver-manager update",
+    "protractor": "./node_modules/protractor/bin/protractor test/protractor.conf.js",
+    "protractorconsole": "./node_modules/protractor/bin/elementexplorer.js http://localhost:3000",
+    "protractordebug": "./node_modules/protractor/bin/protractor debug tests/protractor.conf"
   },
   "repository": {
     "type": "git",

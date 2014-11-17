@@ -1,10 +1,5 @@
 Sawdust:
 
-__11/7__
-* get protractor tests to run standalone
-
---
-
 __11/15__
 * don't match popular people with groups when there are no inbound edges
 * presence: only spin cog when user is actually present and filling out their picks
