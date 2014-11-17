@@ -1,8 +1,7 @@
 angular.module('matching').service('Choice', [
-  '$firebase', '$q',
-  function($firebase, $q) {
-    var ref = new Firebase('crackling-inferno-9653.firebaseIO.com'),
-        table = ref.child('choices');
+  '$firebase', '$q', 'FIREBASE',
+  function($firebase, $q, FIREBASE) {
+    var table = FIREBASE.child('choices');
 
     this.forClass = function(className) {
       return $firebase(table.child(className)).$asArray()
