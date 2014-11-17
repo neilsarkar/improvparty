@@ -30,16 +30,14 @@ angular.module('classes').controller('ResultsController', [
     function checkChoices() {
       if( choices.length < $scope.threshold ) {
         $scope.incomplete = true
-        $scope.participants = choices.map(function(slug) {
-          return classService.slugToName(slug)
-        })
+        $scope.participants = choices
 
         $scope.abstainers = $scope.class.members.filter(function(member) {
           return choices.indexOf(member.slug) < 0;
         })
       } else {
         $scope.incomplete = null
-        $scope.matches = [classService.slugToName($scope.currentUser.slug)]
+        $scope.matches = [$scope.currentUser.slug]
         Choice.matrix($routeParams.className).then(function yes(matrix) {
           var matcher = new Matcher(matrix),
               team = [$scope.currentUser.slug];
@@ -51,15 +49,13 @@ angular.module('classes').controller('ResultsController', [
             if( !step || team.length >= 8 ) { return $scope.pool = []; }
             $scope.pool = step.pool.map(function(candidate) {
               return {
-                name: classService.slugToName(candidate.player),
+                player: candidate.player,
                 score: parseInt(candidate.score / 100)
               }
             })
             $timeout(function() {
               team = step.team
-              $scope.matches = team.map(function(member) {
-                return classService.slugToName(member)
-              })
+              $scope.matches = team
               nextStep()
             }, 1000)
           }

@@ -35,9 +35,9 @@ angular.module('classes').controller('ShowClassController', [
 
     Choice.forClass($routeParams.className).$watch(function(event) {
       if( event.event == 'child_added' ) {
-        $scope.participants.push(classService.slugToName(event.key))
+        $scope.participants.push(event.key)
         $scope.abstainers = $scope.class.members.filter(function(member) {
-          return $scope.participants.indexOf(classService.slugToName(member.slug)) < 0;
+          return $scope.participants.indexOf(member.slug) < 0;
         })
       } else {
         console.debug(event)

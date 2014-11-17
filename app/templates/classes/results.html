@@ -20,7 +20,7 @@
         <ul>
           <li ng-repeat="participant in participants" class="m-member s-locked-in">
             <i class="fa fa-lock"></i>
-            {{participant}}
+            {{participant | slugToName}}
           </li>
           <li ng-repeat="abstainer in abstainers" class="m-member s-inactive">
             <i class="fa fa-cog fa-spin"></i>
@@ -33,7 +33,7 @@
         <h2>Your optimal team</h2>
         <ol class="matches">
           <li ng-repeat="match in matches" class="m-member s-chosen">
-            {{match}}
+            {{match | slugToName}}
           </li>
         </ol>
       </div>
@@ -44,7 +44,7 @@
           <li ng-repeat="candidate in pool">
             {{candidate.score}}
             <span class="m-member">
-              {{candidate.name}}
+              {{candidate.player | slugToName}}
             </span>
           </li>
         </ul>
