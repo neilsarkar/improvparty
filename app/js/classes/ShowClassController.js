@@ -12,9 +12,9 @@ angular.module('classes').controller('ShowClassController', [
         var hash = classService.hashMember(member)
         if( hash == $routeParams.hash ) {
           $scope.currentUser = _.extend(member, {hash: hash})
+          window.localStorage.setItem('currentUser', JSON.stringify($scope.currentUser))
+          classService.save($scope.class.name)
         }
-        window.localStorage.setItem('currentUser', JSON.stringify($scope.currentUser))
-        classService.save($scope.class.name)
       })
       if( !$scope.currentUser ) {
         $scope.authenticationFailed = true
@@ -23,6 +23,11 @@ angular.module('classes').controller('ShowClassController', [
           return member.slug == $scope.currentUser.slug
         })
         $scope.class.members = members
+        Choice.forUser($routeParams.className, $scope.currentUser.slug).$loaded(function yes(choices) {
+          choices.forEach(function(choice) {
+            _($scope.class.members).findWhere({slug: choice.$id}).chosen = true
+          })
+        })
       }
     }, function no() {
       window.alert("Nope.")
