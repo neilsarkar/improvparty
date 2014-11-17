@@ -15,3 +15,4 @@ __11/15__
 
 __11/16__
 * share routes between angular and server
+* create class by forwarding email
