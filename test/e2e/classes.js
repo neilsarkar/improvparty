@@ -22,7 +22,7 @@ exports.test = function() {
         { name: "Marina Mastros", email: "marina.mastros@gmail.com"}
       ]
 
-      element(by.model('class.name')).sendKeys('Suzi Barrett Genre Study')
+      element(by.model('class.name')).sendKeys('test66666')
 
       users.forEach(function(user) {
         element(by.model('newMemberName')).sendKeys(user.name)

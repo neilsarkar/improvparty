@@ -7,7 +7,7 @@ __11/7__
 
 __11/15__
 * don't match popular people with groups when there are no inbound edges
-* only spin cog when user is actually present and filling out their picks
+* presence: only spin cog when user is actually present and filling out their picks
 * delete class you created
 
 __11/16__
