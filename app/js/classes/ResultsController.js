@@ -4,7 +4,7 @@ angular.module('classes').controller('ResultsController', [
     var choices = [];
 
     $scope.class = {name: $routeParams.className}
-    $scope.threshold = 16
+    $scope.threshold = 12
 
     Class.find($routeParams.className).$loaded(function yes(members){
       $scope.class.members = members;
