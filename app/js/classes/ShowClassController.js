@@ -39,7 +39,8 @@ angular.module('classes').controller('ShowClassController', [
         $scope.abstainers = $scope.class.members && $scope.class.members.filter(function(member) {
           return $scope.participants.indexOf(member.slug) < 0;
         })
-        if( $scope.participants.length >= 12 ) {
+
+        if( $scope.participants.length >= 12 && $scope.participants.indexOf($scope.currentUser.slug) > -1 ) {
           $location.path('/classes/' + $routeParams.className + '/' + $routeParams.hash + '/results')
         }
       } else {
